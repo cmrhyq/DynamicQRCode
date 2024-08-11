@@ -18,5 +18,4 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
 
 system:
-  qrcode:
-    save-address: /data/file/qrcode/
+  filePath: /data/file

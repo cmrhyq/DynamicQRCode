@@ -5,7 +5,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 /**
- * <p></p>
+ * <p>系统构造器注入</p>
  *
  * @author Alan Huang
  * @version v0.0.1

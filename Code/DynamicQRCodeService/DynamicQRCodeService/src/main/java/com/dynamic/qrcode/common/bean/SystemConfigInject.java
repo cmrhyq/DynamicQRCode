@@ -1,6 +1,7 @@
 package com.dynamic.qrcode.common.bean;
 
 import lombok.Data;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
@@ -20,4 +21,11 @@ import org.springframework.stereotype.Service;
 @Service
 @Component
 public class SystemConfigInject {
+
+    public static String qrCodeSaveAddress;
+
+    @Value("${system.qrcode.save-address}")
+    public void setQrCodeSaveAddress(String qrCodeSaveAddress) {
+        SystemConfigInject.qrCodeSaveAddress = qrCodeSaveAddress;
+    }
 }

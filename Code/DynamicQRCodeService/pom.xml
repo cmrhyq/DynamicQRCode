@@ -27,11 +27,45 @@
         <druid.version>1.2.16</druid.version>
         <pagehelper.boot.version>1.4.6</pagehelper.boot.version>
         <jwt.version>0.9.1</jwt.version>
+        <fastjson.version>2.0.39</fastjson.version>
+        <poi.version>4.1.2</poi.version>
+        <bitwalker.version>1.21</bitwalker.version>
+        <commons.io.version>2.13.0</commons.io.version>
+        <starter.data.redis>3.3.2</starter.data.redis>
     </properties>
 
     <!-- 依赖 -->
     <dependencyManagement>
         <dependencies>
+
+            <!-- io常用工具类 -->
+            <dependency>
+                <groupId>commons-io</groupId>
+                <artifactId>commons-io</artifactId>
+                <version>${commons.io.version}</version>
+            </dependency>
+
+            <!-- excel工具 -->
+            <dependency>
+                <groupId>org.apache.poi</groupId>
+                <artifactId>poi-ooxml</artifactId>
+                <version>${poi.version}</version>
+            </dependency>
+
+            <!-- 阿里JSON解析器 -->
+            <dependency>
+                <groupId>com.alibaba.fastjson2</groupId>
+                <artifactId>fastjson2</artifactId>
+                <version>${fastjson.version}</version>
+            </dependency>
+
+            <!-- 解析客户端操作系统、浏览器等 -->
+            <dependency>
+                <groupId>eu.bitwalker</groupId>
+                <artifactId>UserAgentUtils</artifactId>
+                <version>${bitwalker.version}</version>
+            </dependency>
+
             <!-- SpringBoot的依赖配置-->
             <dependency>
                 <groupId>org.springframework.boot</groupId>
@@ -87,17 +121,13 @@
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-starter-data-redis</artifactId>
+                <version>${starter.data.redis}</version>
             </dependency>
 
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-starter-web</artifactId>
                 <version>${spring-boot.start.web}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>org.springframework.session</groupId>
-                <artifactId>spring-session-data-redis</artifactId>
             </dependency>
 
             <dependency>
@@ -138,6 +168,12 @@
                 <version>1.0.0</version>
             </dependency>
 
+            <dependency>
+                <groupId>com.dynamic</groupId>
+                <artifactId>service-system</artifactId>
+                <version>1.0.0</version>
+            </dependency>
+
         </dependencies>
     </dependencyManagement>
 
@@ -145,6 +181,7 @@
         <module>service-admin</module>
         <module>service-framework</module>
         <module>service-common</module>
+        <module>service-system</module>
     </modules>
     <packaging>pom</packaging>
 

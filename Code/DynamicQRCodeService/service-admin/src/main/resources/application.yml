@@ -6,12 +6,24 @@ spring:
 
 mybatis:
   mapper-locations: classpath:/mybatis-mapper/*Mapper.xml
-  type-aliases-package: com.dynamic.qrcode.data.dao
+  type-aliases-package: com.dynamic.qrcode.**.dao
   configuration:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
 
 mybatis-plus:
   mapper-locations: classpath:/mybatis-mapper/*Mapper.xml
-  type-aliases-package: com.dynamic.qrcode.data.dao
+  type-aliases-package: com.dynamic.qrcode.**.dao
   configuration:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+# PageHelper分页插件
+pagehelper:
+  helperDialect: mysql
+  supportMethodsArguments: true
+  params: count=countSql
+
+# 日志配置
+logging:
+  level:
+    com.dynamic.qrcode: debug
+    org.springframework: warn

@@ -9,10 +9,10 @@
 
     <modelVersion>4.0.0</modelVersion>
     <packaging>jar</packaging>
-    <artifactId>service-common</artifactId>
+    <artifactId>service-system</artifactId>
 
     <description>
-        common通用工具
+        system系统模块
     </description>
 
     <dependencies>

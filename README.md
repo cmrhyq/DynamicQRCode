@@ -23,7 +23,7 @@
 - Spring boot
 - Redis
 - Mysql
-- XxlJob
+- QuartZ
 
 
 

@@ -5,13 +5,13 @@ spring:
     name: dynamic-qr-code-service
 
 mybatis:
-  mapper-locations: classpath:/mybatis-mapper/*Mapper.xml
+  mapper-locations: classpath:/mapper/*Mapper.xml
   type-aliases-package: com.dynamic.qrcode.**.dao
   configuration:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
 
 mybatis-plus:
-  mapper-locations: classpath:/mybatis-mapper/*Mapper.xml
+  mapper-locations: classpath:/mapper/*Mapper.xml
   type-aliases-package: com.dynamic.qrcode.**.dao
   configuration:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl

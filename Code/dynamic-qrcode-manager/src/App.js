@@ -5,7 +5,7 @@ import {routes} from "./routes";
 function App() {
     const routeElement = useRoutes(routes);
     return (
-        <div>
+        <div className="app">
             {routeElement}
         </div>
     );

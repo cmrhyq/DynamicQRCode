@@ -6,15 +6,17 @@ spring:
 
 mybatis:
   mapper-locations: classpath:/mapper/*Mapper.xml
-  type-aliases-package: com.dynamic.qrcode.**.dao
+  type-aliases-package: com.dynamic.qrcode.**.domain
   configuration:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  config-location: classpath:mybatis/mybatis-config.xml
 
 mybatis-plus:
   mapper-locations: classpath:/mapper/*Mapper.xml
-  type-aliases-package: com.dynamic.qrcode.**.dao
+  type-aliases-package: com.dynamic.qrcode.**.domain
   configuration:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  config-location: classpath:mybatis/mybatis-config.xml
 
 # PageHelper分页插件
 pagehelper:

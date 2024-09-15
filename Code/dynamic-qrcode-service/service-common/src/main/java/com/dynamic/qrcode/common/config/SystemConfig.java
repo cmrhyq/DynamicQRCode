@@ -21,6 +21,12 @@ public class SystemConfig {
 
     private static String filePath;
 
+    /**
+     * 获取地址开关
+     */
+    private static boolean addressEnabled;
+
+
     public static String getFilePath() {
         return filePath;
     }
@@ -32,4 +38,13 @@ public class SystemConfig {
     public static String getQrCodeImportPath() {
         return getFilePath() + "/qrcode";
     }
+
+    public static boolean isAddressEnabled() {
+        return addressEnabled;
+    }
+
+    public void setAddressEnabled(boolean addressEnabled) {
+        SystemConfig.addressEnabled = addressEnabled;
+    }
+
 }

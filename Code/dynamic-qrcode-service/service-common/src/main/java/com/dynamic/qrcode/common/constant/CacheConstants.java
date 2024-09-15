@@ -1,0 +1,51 @@
+package com.dynamic.qrcode.common.constant;
+
+/**
+ * <p></p>
+ *
+ * @author Alan Huang
+ * @version v0.0.1
+ * @classname CacheConstants.java
+ * @project dynamic-qrcode-service
+ * @package com.dynamic.qrcode.common.constant
+ * @date 2024/9/16 0:19
+ * @email cmrhyq@163.com
+ * @since v0.0.1
+ */
+public class CacheConstants {
+
+    /**
+     * 登录用户 redis key
+     */
+    public static final String LOGIN_TOKEN_KEY = "login_tokens:";
+
+    /**
+     * 验证码 redis key
+     */
+    public static final String CAPTCHA_CODE_KEY = "captcha_codes:";
+
+    /**
+     * 参数管理 cache key
+     */
+    public static final String SYS_CONFIG_KEY = "sys_config:";
+
+    /**
+     * 字典管理 cache key
+     */
+    public static final String SYS_DICT_KEY = "sys_dict:";
+
+    /**
+     * 防重提交 redis key
+     */
+    public static final String REPEAT_SUBMIT_KEY = "repeat_submit:";
+
+    /**
+     * 限流 redis key
+     */
+    public static final String RATE_LIMIT_KEY = "rate_limit:";
+
+    /**
+     * 登录账户密码错误次数 redis key
+     */
+    public static final String PWD_ERR_CNT_KEY = "pwd_err_cnt:";
+}

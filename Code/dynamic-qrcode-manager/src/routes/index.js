@@ -15,8 +15,8 @@ const ServerError = lazy(() => import("../page/Error/ServerError"));
 export const ContentRoute = () => (
     <Routes>
         <Route exact path="/" element=<Home/> />
-        <Route exact path="/login" element=<Login/> />
         <Route exact path="/home" element=<Home/> />
+        <Route path="/login" element=<Login/> />
         <Route exact path="/file" element=<File/> />
         <Route exact path="/system/user" element=<UserManager/> />
         <Route exact path="/system/role" element=<RoleManager/> />
@@ -54,5 +54,3 @@ export const ContentRoute = () => (
 //         ]
 //     }
 // ]
-
-export default ContentRoute

@@ -1,56 +1,76 @@
-import {Avatar, Badge, Layout, Menu} from "antd";
-import {BugTwoTone} from "@ant-design/icons";
-import Icon from "antd/es/icon";
+import {Breadcrumb, Button, Layout, Menu, message, theme} from "antd";
+import {ContentRoute} from "../../routes/index";
+import {useState} from "react";
+import {MenuFoldOutlined, MenuUnfoldOutlined} from "@ant-design/icons";
+import menuItems from "./Menu";
+import {useNavigate} from "react-router-dom";
 
-const {SubMenu} = Menu
-const {Header} = Layout;
+function RootHeader() {
+    const navigate = useNavigate();
+    const [collapsed, setCollapsed] = useState(false);
+    const [contextHolder] = message.useMessage();
+    const {Header, Content, Footer, Sider} = Layout;
+    const {
+        token: {colorBgContainer, borderRadiusLG},
+    } = theme.useToken();
+    const switchMenu = (e) => {
+        navigate(e.key, {replace: true});
+    }
 
-export default function RootHeader() {
     return (
-        <Header className="header clearfix fixed">
-            <div className="logo">
-                <BugTwoTone/>
-            </div>
-            <div className="left-menu" style={{float: "left", width: "50%"}}>
+        <Layout style={{minHeight: "100vh"}}>
+            {contextHolder}
+            <Sider
+                trigger={null}
+                collapsible
+                collapsed={collapsed}>
+                <div className="demo-logo-vertical">
+                    <h1 style={{textAlign: "center", color: "white"}}>DynamicQRCode</h1>
+                </div>
                 <Menu
                     theme="dark"
-                    mode="horizontal"
-                    defaultSelectedKeys={["2"]}
-                    style={{lineHeight: "64px"}}>
-                    <Menu.Item key="left-menu-2">开发中</Menu.Item>
-                    <Menu.Item key="left-menu-3">开发中</Menu.Item>
-                </Menu>
-            </div>
-            <div className="right-menu" style={{float: "right", width: "30%"}}>
-                <Menu
-                    theme="dark"
-                    mode="horizontal"
-                    style={{lineHeight: "64px", float: "right"}}>
-                    <Menu.Item key="right-menu-1">
-                        <Badge count={25} overflowCount={10} style={{marginLeft: 10}}>
-                            <Icon type="notification"/>
-                        </Badge>
-                    </Menu.Item>
-                    <SubMenu title={
-                        <Badge dot>
-                            <Avatar
-                                shape="square"
-                                src="http://dummyimage.com/100/FF8604/fff"/>
-                        </Badge>
-                    }>
-                        <Menu.ItemGroup title="用户中心">
-                            <Menu.Item key="user-center-1">个人信息</Menu.Item>
-                            <Menu.Item key="logout">
-                                <span onClick={() => {}}>退出登录</span>
-                            </Menu.Item>
-                        </Menu.ItemGroup>
-                        <Menu.ItemGroup title="设置中心">
-                            <Menu.Item key="user-center-2">个人设置</Menu.Item>
-                            <Menu.Item key="user-center-3">系统设置</Menu.Item>
-                        </Menu.ItemGroup>
-                    </SubMenu>
-                </Menu>
-            </div>
-        </Header>
+                    defaultSelectedKeys={['1']}
+                    mode="inline"
+                    items={menuItems}
+                    onClick={switchMenu}/>
+            </Sider>
+            <Layout>
+                <Header style={{padding: 0, background: colorBgContainer}}>
+                    <Button
+                        type="text"
+                        icon={collapsed ? <MenuUnfoldOutlined/> : <MenuFoldOutlined/>}
+                        onClick={() => setCollapsed(!collapsed)}
+                        style={{
+                            fontSize: '16px',
+                            width: 64,
+                            height: 64,
+                        }}
+                    />
+                    <Content style={{margin: '0px 16px'}}>
+                        <Breadcrumb
+                            style={{margin: '16px 0'}}
+                            items={[
+                                {title: 'Home'},
+                                {title: 'List'},
+                            ]}/>
+                        <div style={{
+                            padding: 24,
+                            minHeight: 700,
+                            background: colorBgContainer,
+                            borderRadius: borderRadiusLG
+                        }}>
+                            <ContentRoute/>
+                        </div>
+                    </Content>
+                    <Footer style={{textAlign: 'center'}}>
+                        <a href="https://github.com/cmrhyq/DynamicQRCode" target={"_blank"} rel="noreferrer">
+                            Fork me on Github
+                        </a>
+                        , Mixed by Nelson Kuang @2017, currently under developing... </Footer>
+                </Header>
+            </Layout>
+        </Layout>
     )
 }
+
+export default RootHeader;

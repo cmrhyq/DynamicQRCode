@@ -1,42 +1,107 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.dynamic</groupId>
-    <artifactId>dynamic-qrcode-service</artifactId>
+    <groupId>com.cmrhyq</groupId>
+    <artifactId>dynamic-qrcode</artifactId>
     <version>1.0.0</version>
 
-    <name>DynamicQRCodeService</name>
-    <description>动态二维码系统服务端</description>
+    <name>cmrhyq</name>
+    <description>动态二维码系统</description>
 
     <properties>
-        <system.version>1.0.0</system.version>
-        <java.version>1.8</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <spring-boot.version>2.6.13</spring-boot.version>
-        <spring-boot.start.web>3.3.2</spring-boot.start.web>
-
-        <jwt.version>0.9.1</jwt.version>
-        <fastjson.version>2.0.43</fastjson.version>
+        <java.version>1.8</java.version>
+        <maven-jar-plugin.version>3.1.1</maven-jar-plugin.version>
+        <spring-framework.version>5.3.33</spring-framework.version>
         <spring-security.version>5.7.12</spring-security.version>
-        <zxing.version>3.4.1</zxing.version>
-        <mybatis.version>2.2.2</mybatis.version>
-        <mybatis.plus.version>3.5.3.1</mybatis.plus.version>
-        <druid.version>1.2.16</druid.version>
-        <pagehelper.boot.version>1.4.6</pagehelper.boot.version>
-        <jwt.version>0.9.1</jwt.version>
-        <fastjson.version>2.0.39</fastjson.version>
-        <poi.version>4.1.2</poi.version>
+        <druid.version>1.2.23</druid.version>
         <bitwalker.version>1.21</bitwalker.version>
+        <swagger.version>3.0.0</swagger.version>
+        <kaptcha.version>2.3.3</kaptcha.version>
+        <pagehelper.boot.version>1.4.7</pagehelper.boot.version>
+        <fastjson.version>2.0.43</fastjson.version>
+        <oshi.version>6.6.3</oshi.version>
         <commons.io.version>2.13.0</commons.io.version>
-        <starter.data.redis>3.3.2</starter.data.redis>
+        <poi.version>4.1.2</poi.version>
+        <velocity.version>2.3</velocity.version>
+        <jwt.version>0.9.1</jwt.version>
     </properties>
 
-    <!-- 依赖 -->
+    <!-- 依赖声明 -->
     <dependencyManagement>
         <dependencies>
+
+            <!-- SpringFramework的依赖配置-->
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-framework-bom</artifactId>
+                <version>${spring-framework.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
+            <!-- SpringSecurity的依赖配置-->
+            <dependency>
+                <groupId>org.springframework.security</groupId>
+                <artifactId>spring-security-bom</artifactId>
+                <version>${spring-security.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
+            <!-- SpringBoot的依赖配置-->
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-dependencies</artifactId>
+                <version>2.5.15</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
+            <!-- 阿里数据库连接池 -->
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>druid-spring-boot-starter</artifactId>
+                <version>${druid.version}</version>
+            </dependency>
+
+            <!-- 解析客户端操作系统、浏览器等 -->
+            <dependency>
+                <groupId>eu.bitwalker</groupId>
+                <artifactId>UserAgentUtils</artifactId>
+                <version>${bitwalker.version}</version>
+            </dependency>
+
+            <!-- pagehelper 分页插件 -->
+            <dependency>
+                <groupId>com.github.pagehelper</groupId>
+                <artifactId>pagehelper-spring-boot-starter</artifactId>
+                <version>${pagehelper.boot.version}</version>
+            </dependency>
+
+            <!-- 获取系统信息 -->
+            <dependency>
+                <groupId>com.github.oshi</groupId>
+                <artifactId>oshi-core</artifactId>
+                <version>${oshi.version}</version>
+            </dependency>
+
+            <!-- Swagger3依赖 -->
+            <dependency>
+                <groupId>io.springfox</groupId>
+                <artifactId>springfox-boot-starter</artifactId>
+                <version>${swagger.version}</version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>io.swagger</groupId>
+                        <artifactId>swagger-models</artifactId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
 
             <!-- io常用工具类 -->
             <dependency>
@@ -52,34 +117,18 @@
                 <version>${poi.version}</version>
             </dependency>
 
+            <!-- velocity代码生成使用模板 -->
+            <dependency>
+                <groupId>org.apache.velocity</groupId>
+                <artifactId>velocity-engine-core</artifactId>
+                <version>${velocity.version}</version>
+            </dependency>
+
             <!-- 阿里JSON解析器 -->
             <dependency>
                 <groupId>com.alibaba.fastjson2</groupId>
                 <artifactId>fastjson2</artifactId>
                 <version>${fastjson.version}</version>
-            </dependency>
-
-            <!-- 解析客户端操作系统、浏览器等 -->
-            <dependency>
-                <groupId>eu.bitwalker</groupId>
-                <artifactId>UserAgentUtils</artifactId>
-                <version>${bitwalker.version}</version>
-            </dependency>
-
-            <!-- SpringBoot的依赖配置-->
-            <dependency>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-dependencies</artifactId>
-                <version>2.5.15</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-
-            <!-- pagehelper 分页插件 -->
-            <dependency>
-                <groupId>com.github.pagehelper</groupId>
-                <artifactId>pagehelper-spring-boot-starter</artifactId>
-                <version>${pagehelper.boot.version}</version>
             </dependency>
 
             <!-- Token生成与解析-->
@@ -89,89 +138,45 @@
                 <version>${jwt.version}</version>
             </dependency>
 
+            <!-- 验证码 -->
             <dependency>
-                <groupId>org.mybatis.spring.boot</groupId>
-                <artifactId>mybatis-spring-boot-starter</artifactId>
-                <version>${mybatis.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.baomidou</groupId>
-                <artifactId>mybatis-plus-boot-starter</artifactId>
-                <version>${mybatis.plus.version}</version>
+                <groupId>pro.fessional</groupId>
+                <artifactId>kaptcha</artifactId>
+                <version>${kaptcha.version}</version>
             </dependency>
 
+            <!-- 定时任务-->
             <dependency>
-                <groupId>org.junit.jupiter</groupId>
-                <artifactId>junit-jupiter</artifactId>
-                <version>RELEASE</version>
-                <scope>compile</scope>
-            </dependency>
-
-            <dependency>
-                <groupId>com.google.zxing</groupId>
-                <artifactId>core</artifactId>
-                <version>${zxing.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.google.zxing</groupId>
-                <artifactId>javase</artifactId>
-                <version>${zxing.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-starter-data-redis</artifactId>
-                <version>${starter.data.redis}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-starter-web</artifactId>
-                <version>${spring-boot.start.web}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>com.mysql</groupId>
-                <artifactId>mysql-connector-j</artifactId>
-                <scope>runtime</scope>
-            </dependency>
-
-            <!-- 阿里数据库连接池 -->
-            <dependency>
-                <groupId>com.alibaba</groupId>
-                <artifactId>druid-spring-boot-starter</artifactId>
-                <version>${druid.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-starter-test</artifactId>
-                <version>3.3.2</version>
-                <scope>test</scope>
-            </dependency>
-
-            <!--        web服务入口-->
-            <dependency>
-                <groupId>com.dynamic</groupId>
-                <artifactId>service-admin</artifactId>
-                <version>${system.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>com.dynamic</groupId>
-                <artifactId>service-common</artifactId>
+                <groupId>com.cmrhyq</groupId>
+                <artifactId>dynamic-qrcode-quartz</artifactId>
                 <version>1.0.0</version>
             </dependency>
 
+            <!-- 代码生成-->
             <dependency>
-                <groupId>com.dynamic</groupId>
-                <artifactId>service-framework</artifactId>
+                <groupId>com.cmrhyq</groupId>
+                <artifactId>dynamic-qrcode-generator</artifactId>
                 <version>1.0.0</version>
             </dependency>
 
+            <!-- 核心模块-->
             <dependency>
-                <groupId>com.dynamic</groupId>
-                <artifactId>service-system</artifactId>
+                <groupId>com.cmrhyq</groupId>
+                <artifactId>dynamic-qrcode-framework</artifactId>
+                <version>1.0.0</version>
+            </dependency>
+
+            <!-- 系统模块-->
+            <dependency>
+                <groupId>com.cmrhyq</groupId>
+                <artifactId>dynamic-qrcode-system</artifactId>
+                <version>1.0.0</version>
+            </dependency>
+
+            <!-- 通用工具-->
+            <dependency>
+                <groupId>com.cmrhyq</groupId>
+                <artifactId>dynamic-qrcode-common</artifactId>
                 <version>1.0.0</version>
             </dependency>
 
@@ -179,10 +184,12 @@
     </dependencyManagement>
 
     <modules>
-        <module>service-admin</module>
-        <module>service-framework</module>
-        <module>service-common</module>
-        <module>service-system</module>
+        <module>dynamic-qrcode-admin</module>
+        <module>dynamic-qrcode-framework</module>
+        <module>dynamic-qrcode-system</module>
+        <module>dynamic-qrcode-quartz</module>
+        <module>dynamic-qrcode-generator</module>
+        <module>dynamic-qrcode-common</module>
     </modules>
     <packaging>pom</packaging>
 

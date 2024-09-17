@@ -1,5 +1,5 @@
 import './App.css';
-import {isLoggedIn} from "./util/auth";
+import {isLoggedIn} from "./plugins/auth";
 import RootHeader from "./components/layout/RootHeader";
 import Login from "./page/login/Login";
 

@@ -19,7 +19,7 @@ function Login() {
     });
     const [loading, setLoading] = useState(false);
     const onFinish = (values) => {
-        const {username, password, remember, captcha} = values;
+        const {username, password, remember, code} = values;
         const uuid = loginForm.uuid; // 使用更新后的 uuid
 
     }
@@ -37,6 +37,7 @@ function Login() {
                     uuid: uuid
                 });
             }
+            console.log(loginForm)
         }).catch(err => {
             console.log(err)
             message.error("获取验证码失败")
@@ -84,7 +85,7 @@ function Login() {
                                 <Row gutter={8}>
                                     <Col span={12}>
                                         <Form.Item
-                                            name="captcha"
+                                            name="code"
                                             noStyle
                                             rules={[
                                                 {

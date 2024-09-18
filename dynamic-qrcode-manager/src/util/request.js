@@ -4,7 +4,6 @@ import {tansParams} from "./commonUtil";
 import cache from "../plugins/cache";
 import errorCode from "./errorCode";
 import {message, Modal} from 'antd';
-import {useNavigate} from "react-router-dom";
 
 // 是否显示重新登录
 export let isRelogin = {show: false};
@@ -39,7 +38,7 @@ service.interceptors.request.use(
             const requestSize = Object.keys(JSON.stringify(requestObj)).length; // 请求数据大小
             const limitSize = 5 * 1024 * 1024; // 限制存放数据5M
             if (requestSize >= limitSize) {
-                console.warn(`[${config.url}]: ` + '请求数据大小超出允许的5M限制，无法进行防重复提交验证。')
+                console.warn('[' + config.url + ']: 请求数据大小超出允许的5M限制，无法进行防重复提交验证。')
                 return config;
             }
             const sessionObj = cache.session.getJSON('sessionObj')

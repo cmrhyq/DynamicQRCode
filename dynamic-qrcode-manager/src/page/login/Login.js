@@ -1,11 +1,21 @@
 import "./login.css";
 import loginBox from "../../assets/images/login_box.png"
-import {Button, Checkbox, Col, Flex, Form, Input, message, Row} from "antd";
+import {Button, Checkbox, Col, Flex, Form, Input, message, Row, Image} from "antd";
 import {LockOutlined, UserOutlined, VerifiedOutlined} from "@ant-design/icons";
-import {getCodeImg} from "../../api/login";
-import {useState} from "react";
+import {getCodeImg, login} from "../../api/login";
+import {useEffect, useState} from "react";
+import Cookies from 'js-cookie';
+import {setToken} from "../../plugins/auth";
+import {useNavigate} from "react-router-dom";
 
 function Login() {
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        getCode();
+        onRemember();
+    }, []);
+
     const [loginForm, setLoginForm] = useState({
         codeUrl: "",
         username: "",
@@ -16,46 +26,72 @@ function Login() {
         captchaEnabled: true,
         // 注册开关
         register: false,
+        remember: true
     });
     const [loading, setLoading] = useState(false);
     const onFinish = (values) => {
+        setLoading(true);
         const {username, password, remember, code} = values;
+
+        if (remember) {
+            Cookies.set("username", username);
+            Cookies.set("password", password);
+        }
         const uuid = loginForm.uuid; // 使用更新后的 uuid
 
+        // 发送登录请求
+        login(username, password, code, uuid).then(res => {
+            message.success("登录成功")
+            setToken(res.token)
+            // 登录成功后跳转到首页
+            navigate("/home");
+        }).catch(err => {
+            console.log(err.message);
+            getCode();
+        }).finally(() => {
+            setLoading(false);
+        });
     }
 
     const getCode = () => {
-        setLoading(true);
         getCodeImg().then(res => {
             const captchaEnabled = res.captchaEnabled === undefined ? true : res.captchaEnabled;
             if (captchaEnabled) {
                 const codeUrl = "data:image/gif;base64," + res.img;
                 const uuid = res.uuid;
-                setLoginForm( {
+                setLoginForm({
                     captchaEnabled: captchaEnabled,
                     codeUrl: codeUrl,
                     uuid: uuid
                 });
             }
-            console.log(loginForm)
         }).catch(err => {
             console.log(err)
-            message.error("获取验证码失败")
-        }).finally(() => {
-            setLoading(false);
-        });
+            message.error("获取验证码异常")
+        })
+    }
+
+    const onRemember = () => {
+        const username = Cookies.get("username");
+        const password = Cookies.get("password");
+        if (username !== "" && password !== "") {
+            setLoginForm({
+                username: username,
+                password: password
+            });
+        }
     }
 
     return (
         <div className="main-box">
             <div className="login-box">
                 <Row justify="center" align="middle" style={{margin: "0 auto"}}>
-                    <Col span={13}>
+                    <Col span={14}>
                         <img src={loginBox} alt="" style={{width: "100%"}}/>
                     </Col>
-                    <Col span={11}>
+                    <Col span={10}>
                         <Form name="login"
-                              initialValues={{remember: false}}
+                              initialValues={loginForm}
                               style={{maxWidth: 360}}
                               onFinish={onFinish}>
                             <Form.Item
@@ -79,10 +115,10 @@ function Login() {
                                 ]}>
                                 <Input.Password prefix={<LockOutlined/>}
                                                 type="password"
-                                                placeholder="password"/>
+                                                placeholder="Password"/>
                             </Form.Item>
                             <Form.Item extra="We must make sure that your are a human.">
-                                <Row gutter={8}>
+                                <Row gutter={9} justify="space-between">
                                     <Col span={12}>
                                         <Form.Item
                                             name="code"
@@ -95,11 +131,17 @@ function Login() {
                                             ]}>
                                             <Input prefix={<VerifiedOutlined/>}
                                                    type="captcha"
-                                                   placeholder="captcha"/>
+                                                   placeholder="Captcha"/>
                                         </Form.Item>
                                     </Col>
                                     <Col span={12}>
-                                        <Button onClick={getCode} loading={loading}>Get captcha</Button>
+                                        <Image
+                                            width={100}
+                                            height={32}
+                                            onClick={getCode}
+                                            src={loginForm.codeUrl}
+                                            preview={false}
+                                        />
                                     </Col>
                                 </Row>
                             </Form.Item>
@@ -117,7 +159,7 @@ function Login() {
                             </Form.Item>
                             <Form.Item>
                                 <Flex gap="large" wrap align="center" justify="space-between">
-                                    <Button type="primary" htmlType="submit">
+                                    <Button type="primary" htmlType="submit" loading={loading}>
                                         Login Now
                                     </Button>
                                     <Button type="dashed" onClick={() => {

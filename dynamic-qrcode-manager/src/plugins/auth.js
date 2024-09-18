@@ -19,5 +19,5 @@ export function removeToken() {
  * @returns {boolean}
  */
 export function isLoggedIn() {
-    return !!Cookies.get("token");
+    return !!Cookies.get(TokenKey);
 }

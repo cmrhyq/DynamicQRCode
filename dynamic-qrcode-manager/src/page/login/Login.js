@@ -31,12 +31,11 @@ function Login() {
             if (captchaEnabled) {
                 const codeUrl = "data:image/gif;base64," + res.img;
                 const uuid = res.uuid;
-                setLoginForm(prev => ({
-                    ...prev,
-                    captchaEnabled,
-                    codeUrl,
-                    uuid
-                }));
+                setLoginForm( {
+                    captchaEnabled: captchaEnabled,
+                    codeUrl: codeUrl,
+                    uuid: uuid
+                });
             }
         }).catch(err => {
             console.log(err)

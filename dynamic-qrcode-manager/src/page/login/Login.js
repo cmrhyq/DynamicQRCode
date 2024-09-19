@@ -1,21 +1,27 @@
 import "./login.css";
 import loginBox from "../../assets/images/login_box.png"
-import {Button, Checkbox, Col, Flex, Form, Input, message, Row, Image} from "antd";
+import {Button, Checkbox, Col, Flex, Form, Image, Input, message, Row} from "antd";
 import {LockOutlined, UserOutlined, VerifiedOutlined} from "@ant-design/icons";
 import {getCodeImg, login} from "../../api/login";
 import {useEffect, useState} from "react";
-import Cookies from 'js-cookie';
 import {setToken} from "../../plugins/auth";
 import {useNavigate} from "react-router-dom";
+import cache from '../../plugins/cache'
 
 function Login() {
     const navigate = useNavigate();
 
+    /**
+     * 初始化
+     */
     useEffect(() => {
         getCode();
         onRemember();
     }, []);
 
+    /**
+     * 登录表单数据
+     */
     const [loginForm, setLoginForm] = useState({
         codeUrl: "",
         username: "",
@@ -28,14 +34,29 @@ function Login() {
         register: false,
         remember: true
     });
+
+    /**
+     * 加载中
+     */
     const [loading, setLoading] = useState(false);
+
+    /**
+     * 登录
+     * 1. 获取表单数据
+     * 2. 发送登录请求
+     * 3. 处理登录结果
+     * 4. TODO 存储token
+     * 5. 跳转到首页
+     * 6. 关闭加载中
+     * @param values
+     */
     const onFinish = (values) => {
         setLoading(true);
         const {username, password, remember, code} = values;
 
         if (remember) {
-            Cookies.set("username", username);
-            Cookies.set("password", password);
+            cache.session.set("username", username);
+            cache.session.set("password", password);
         }
         const uuid = loginForm.uuid; // 使用更新后的 uuid
 
@@ -44,7 +65,7 @@ function Login() {
             message.success("登录成功")
             setToken(res.token)
             // 登录成功后跳转到首页
-            navigate("/home");
+            navigate("/home", {replace: true});
         }).catch(err => {
             console.log(err.message);
             getCode();
@@ -53,6 +74,9 @@ function Login() {
         });
     }
 
+    /**
+     * 获取验证码
+     */
     const getCode = () => {
         getCodeImg().then(res => {
             const captchaEnabled = res.captchaEnabled === undefined ? true : res.captchaEnabled;
@@ -71,9 +95,12 @@ function Login() {
         })
     }
 
+    /**
+     * 记住用户名和密码
+     */
     const onRemember = () => {
-        const username = Cookies.get("username");
-        const password = Cookies.get("password");
+        const username = cache.session.get("username");
+        const password = cache.session.get("password");
         if (username !== "" && password !== "") {
             setLoginForm({
                 username: username,

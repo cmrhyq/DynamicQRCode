@@ -65,7 +65,6 @@ const localCache = {
     }
 }
 
-
 const cache = {
     /**
      * 会话级缓存
@@ -77,14 +76,3 @@ const cache = {
     local: localCache
 }
 export default cache
-
-// export default {
-//     /**
-//      * 会话级缓存
-//      */
-//     session: sessionCache,
-//     /**
-//      * 本地缓存
-//      */
-//     local: localCache
-// }

@@ -1,17 +1,17 @@
-import Cookies from 'js-cookie'
+import cache from './cache'
 
 const TokenKey = 'Admin-Token'
 
 export function getToken() {
-    return Cookies.get(TokenKey)
+    return cache.session.get(TokenKey)
 }
 
 export function setToken(token) {
-    return Cookies.set(TokenKey, token)
+    return cache.session.set(TokenKey, token)
 }
 
 export function removeToken() {
-    return Cookies.remove(TokenKey)
+    return cache.session.remove(TokenKey)
 }
 
 /**
@@ -19,5 +19,5 @@ export function removeToken() {
  * @returns {boolean}
  */
 export function isLoggedIn() {
-    return !!Cookies.get(TokenKey);
+    return !!cache.session.get(TokenKey);
 }

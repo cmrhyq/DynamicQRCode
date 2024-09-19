@@ -1,5 +1,4 @@
 import {Breadcrumb, Button, Layout, Menu, message, theme} from "antd";
-import {ContentRoute} from "../../routes/index";
 import {useState} from "react";
 import {MenuFoldOutlined, MenuUnfoldOutlined} from "@ant-design/icons";
 import menuItems from "./Menu";
@@ -59,7 +58,7 @@ function RootHeader() {
                             background: colorBgContainer,
                             borderRadius: borderRadiusLG
                         }}>
-                            <ContentRoute/>
+                            {/*<ContentRoute/>*/}
                         </div>
                     </Content>
                     <Footer style={{textAlign: 'center'}}>

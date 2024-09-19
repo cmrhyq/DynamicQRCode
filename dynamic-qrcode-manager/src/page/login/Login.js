@@ -65,7 +65,7 @@ function Login() {
             message.success("登录成功")
             setToken(res.token)
             // 登录成功后跳转到首页
-            navigate("/home", {replace: true});
+            navigate("/", {replace: true});
         }).catch(err => {
             console.log(err.message);
             getCode();

@@ -17,7 +17,17 @@
 
 
 
-## 技术栈
+## 前端技术栈
+
+- React
+- Vite
+- TypeScript
+- Ant Design
+- Axios
+
+
+
+## 后端技术栈
 
 - Java
 - Spring boot

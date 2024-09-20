@@ -1,6 +1,6 @@
 import { message } from "antd";
 import { ReactElement, useEffect } from "react";
-import { getToken } from "../util/auth";
+import { getToken } from "../plugins/auth";
 import { useNavigate } from "react-router-dom";
 
 interface Props {

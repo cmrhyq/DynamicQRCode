@@ -1,10 +1,10 @@
 import React, {lazy} from 'react'
-import {Navigate} from 'react-router-dom'
+import {Navigate} from "react-router";
 import {getToken} from "../plugins/auth";
 
 const Login = lazy(() => import("../page/login/Login"));
 const Home = lazy(() => import("../page/home/Home"));
-const RootHeader = lazy(() => import("../components/layout/RootHeader"));
+const RootLayout = lazy(() => import("../components/layout/index"));
 const UserManager = lazy(() => import("../page/system/UserManager"));
 const RoleManager = lazy(() => import("../page/system/RoleManager"));
 const DeptManager = lazy(() => import("../page/system/DeptManager"));
@@ -39,7 +39,7 @@ export const routes: Array<Router> = [
     },
     {
         path: "/",
-        element: <Appraisal>{<RootHeader/>}</Appraisal>,
+        element: <Appraisal>{<RootLayout/>}</Appraisal>,
         children: [
             {
                 path: "",

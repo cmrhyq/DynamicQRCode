@@ -1,11 +1,12 @@
-import {Breadcrumb, Button, Layout, Menu, message, theme} from "antd";
-import {useState} from "react";
-import {MenuFoldOutlined, MenuUnfoldOutlined} from "@ant-design/icons";
-import menuItems from "./Menu";
 import {useNavigate} from "react-router-dom";
+import {useState} from "react";
+import {Breadcrumb, Button, Layout, Menu, message, theme} from "antd";
+import menuItems from "./Menu";
+import {MenuFoldOutlined, MenuUnfoldOutlined} from "@ant-design/icons";
 
-function RootHeader() {
+function Index() {
     const navigate = useNavigate();
+
     const [collapsed, setCollapsed] = useState(false);
     const [contextHolder] = message.useMessage();
     const {Header, Content, Footer, Sider} = Layout;
@@ -72,4 +73,4 @@ function RootHeader() {
     )
 }
 
-export default RootHeader;
+export default Index;

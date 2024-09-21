@@ -9,7 +9,6 @@ import App from './App.tsx'
  * 4. 引入业务样式
  */
 import 'reset-css'
-
 import '@/assets/styles/global.scss'
 
 createRoot(document.getElementById('root')!).render(

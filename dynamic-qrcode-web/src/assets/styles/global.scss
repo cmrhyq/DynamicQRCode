@@ -11,3 +11,8 @@ body {
 #root{
   height: 100%;
 }
+
+img {
+  //取消图片拖拽
+  --webkit-user-drag: none;
+}

@@ -12,6 +12,9 @@ const service = axios.create({
     timeout: 10000,
 })
 
+/**
+ * 请求拦截器
+ */
 service.interceptors.request.use(
     config => {
         // 是否设置token
@@ -64,6 +67,9 @@ service.interceptors.request.use(
     }
 )
 
+/**
+ * 响应拦截器
+ */
 service.interceptors.response.use(res => {
         const navigate = useNavigate();
         // 未设置状态码则默认成功状态
@@ -150,3 +156,5 @@ export function tansParams(params: { [x: string]: never; }) {
     }
     return result
 }
+
+export default service;

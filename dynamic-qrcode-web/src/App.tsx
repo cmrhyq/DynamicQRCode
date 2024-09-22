@@ -1,12 +1,11 @@
-import {Outlet} from "react-router-dom";
+import Layout from "./components/layout";
 
 function App() {
 
     return (
-        <div>
-            {/*占位符组件，类似于窗口*/}
-            <Outlet></Outlet>
-        </div>
+        <>
+            <Layout/>
+        </>
     )
 }
 

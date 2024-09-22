@@ -41,7 +41,7 @@ export default defineConfig({
     // 是否自动打开浏览器
     open: true,
     // 是否开启https
-    https: true,
+    https: false,
     // 监听所有地址
     host: true,
     // 跨域代理，为开发服务器配置CORS

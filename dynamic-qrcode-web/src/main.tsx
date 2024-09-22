@@ -1,6 +1,6 @@
-import { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
-import App from './App.tsx'
+import {StrictMode} from 'react'
+import {createRoot} from 'react-dom/client'
+// import App from './App.tsx'
 /**
  * css文件引入顺序
  * 1. 引入reset-css
@@ -10,9 +10,11 @@ import App from './App.tsx'
  */
 import 'reset-css'
 import '@/assets/styles/global.scss'
+import Router from './router'
 
 createRoot(document.getElementById('root')!).render(
-  <StrictMode>
-    <App />
-  </StrictMode>,
+    <StrictMode>
+        {/*<App />*/}
+        <Router/>
+    </StrictMode>,
 )

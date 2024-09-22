@@ -3,6 +3,7 @@ import {getToken} from "./auth.tsx";
 import cache from "./cache.tsx";
 import errorCode from "../utils/errorCode.tsx";
 import {message, Modal} from "antd";
+import {useNavigate} from "react-router-dom";
 
 const isLoggedIn = {show: false};
 
@@ -64,7 +65,7 @@ service.interceptors.request.use(
 )
 
 service.interceptors.response.use(res => {
-        // const navigate = useNavigate();
+        const navigate = useNavigate();
         // 未设置状态码则默认成功状态
         const code = res.data.code || 200;
         // 获取错误信息
@@ -85,8 +86,8 @@ service.interceptors.response.use(res => {
                     cancelText: "取消",
                     onOk() {
                         isLoggedIn.show = false;
-                        // navigate("/login", {replace: true});
-                        window.location.href = "/login";
+                        navigate("/login", {replace: true});
+                        // window.location.href = "/login";
                     },
                     onCancel() {
                         console.log("Cancel");
@@ -107,8 +108,7 @@ service.interceptors.response.use(res => {
         } else {
             return res.data
         }
-    },
-    error => {
+    }, error => {
         let {msg} = error;
         if (msg === "Network Error") {
             msg = "后端接口连接异常";

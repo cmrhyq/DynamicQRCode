@@ -4,7 +4,7 @@ import {useNavigate} from "react-router-dom";
 import {useEffect, useState} from "react";
 import cache from "../../plugins/cache.tsx";
 import {getCodeImg, login} from "../../api/login.tsx";
-import {Button, Checkbox, Col, Flex, Form, Input, message, Row, Image} from "antd";
+import {Button, Checkbox, Col, Flex, Form, Image, Input, message, Row} from "antd";
 import {setToken} from "../../plugins/auth.tsx";
 import {LockOutlined, UserOutlined, VerifiedOutlined} from "@ant-design/icons";
 
@@ -34,11 +34,17 @@ function Login() {
     /**
      * 验证码开关
      */
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-expect-error
     const [captcha, setCaptcha] = useState(true)
+
     /**
      * 注册开关
      */
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-expect-error
     const [register, setRegister] = useState(false)
+
     /**
      * 加载中
      */

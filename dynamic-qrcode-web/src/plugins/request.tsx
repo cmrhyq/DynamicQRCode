@@ -5,10 +5,10 @@ import errorCode from "../utils/errorCode.tsx";
 import {message, Modal} from "antd";
 import {useNavigate} from "react-router-dom";
 
-const isLoggedIn = {show: false};
+const isLoggedIn = {show: false}
 
 const service = axios.create({
-    baseURL: process.env.APP_API_URL,
+    baseURL: "http://localhost:8080",
     timeout: 10000,
 })
 
@@ -70,7 +70,8 @@ service.interceptors.request.use(
 /**
  * 响应拦截器
  */
-service.interceptors.response.use(res => {
+service.interceptors.response.use(
+    res => {
         const navigate = useNavigate();
         // 未设置状态码则默认成功状态
         const code = res.data.code || 200;

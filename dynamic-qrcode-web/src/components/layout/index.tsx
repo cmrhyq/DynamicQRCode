@@ -74,7 +74,7 @@ function Index() {
                         <a href="https://github.com/cmrhyq/DynamicQRCode" target={"_blank"} rel="noreferrer">
                             Fork me on Github
                         </a>
-                        , Mixed by Nelson Kuang @2017, currently under developing... </Footer>
+                        , Mixed by Alan Huang @2024, currently under developing... </Footer>
                 </Header>
             </Layout>
         </Layout>

@@ -11,7 +11,7 @@ function NotFound() {
                 title="404"
                 subTitle="抱歉，您访问的页面不存在。"
                 extra={
-                    <Button type="primary" onClick={() => navigate("/admin/home", {replace: true})}>返回主页</Button>
+                    <Button type="primary" onClick={() => navigate("/dashboard", {replace: true})}>返回主页</Button>
                 }
             />
         </div>

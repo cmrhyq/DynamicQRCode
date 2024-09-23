@@ -1,12 +1,13 @@
-import {Outlet, To, useNavigate} from "react-router-dom";
+import {To, useNavigate, useRoutes} from "react-router-dom";
 import {CSSProperties, useState} from "react";
 import {Breadcrumb, Button, Layout, Menu, theme} from "antd";
 import menuItems from "./menu.tsx";
 import {MenuFoldOutlined, MenuUnfoldOutlined} from "@ant-design/icons";
+import routes from "../../router/index.tsx";
 
 function Index() {
     const navigate = useNavigate();
-
+    const element = useRoutes(routes);
     const [collapsed, setCollapsed] = useState(false);
     const {Header, Content, Footer, Sider} = Layout;
     const {
@@ -66,8 +67,7 @@ function Index() {
                             background: colorBgContainer,
                             borderRadius: borderRadiusLG
                         }}>
-                            {/*占位符组件，类似于窗口*/}
-                            <Outlet></Outlet>
+                            {element}
                         </div>
                     </Content>
                     <Footer style={{textAlign: 'center'}}>

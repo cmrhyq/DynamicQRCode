@@ -8,7 +8,7 @@ import {Button, Checkbox, Col, Flex, Form, Image, Input, message, Row} from "ant
 import {setToken} from "../../plugins/auth.tsx";
 import {LockOutlined, UserOutlined, VerifiedOutlined} from "@ant-design/icons";
 
-function Login() {
+export default function Login() {
     const navigate = useNavigate();
 
     /**
@@ -93,14 +93,11 @@ function Login() {
             if (captchaEnabled) {
                 const codeUrl = "data:image/gif;base64," + res.img;
                 const uuid = res.uuid;
-                setLoginForm({
+                setLoginForm(prevLoginForm => ({
+                    ...prevLoginForm,
                     codeUrl: codeUrl,
-                    code: "",
-                    password: "",
-                    remember: false,
-                    username: "",
                     uuid: uuid
-                });
+                }));
                 setCaptcha(captchaEnabled);
             }
         }).catch(err => {
@@ -116,14 +113,11 @@ function Login() {
         const username = cache.session.get("username");
         const password = cache.session.get("password");
         if (username !== "" && password !== "") {
-            setLoginForm({
-                code: loginForm.code,
-                codeUrl: loginForm.codeUrl,
-                remember: loginForm.remember,
-                uuid: loginForm.uuid,
+            setLoginForm(prevLoginForm => ({
+                ...prevLoginForm,
                 username: username || '',
                 password: password || ''
-            });
+            }));
         }
     }
 
@@ -221,5 +215,3 @@ function Login() {
         </div>
     );
 }
-
-export default Login;

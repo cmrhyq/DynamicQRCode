@@ -1,4 +1,3 @@
-// import App from "../App.tsx";
 import Login from "../views/login/Login.tsx";
 import Dashboard from "../views/dashboard/Dashboard.tsx";
 import PermissionDenied from "../views/error/PermissionDenied.tsx";
@@ -8,8 +7,9 @@ import UserManager from "../views/system/UserManager.tsx";
 import RoleManager from "../views/system/RoleManager.tsx";
 import DeptManager from "../views/system/DeptManager.tsx";
 import CacheMonitor from "../views/monitor/CacheMonitor.tsx";
-import File from "../views/file/File.tsx";
+// import File from "../views/file/File.tsx";
 import { Navigate } from "react-router-dom";
+import { lazy } from "react";
 
 // const baseRouter = () => (
 //     <BrowserRouter>
@@ -32,6 +32,8 @@ import { Navigate } from "react-router-dom";
 // )
 //
 // export default baseRouter;
+
+const File = lazy(() => import("../views/file/File.tsx"));
 
 const routes = [
     {

@@ -7,9 +7,8 @@ import UserManager from "../views/system/UserManager.tsx";
 import RoleManager from "../views/system/RoleManager.tsx";
 import DeptManager from "../views/system/DeptManager.tsx";
 import CacheMonitor from "../views/monitor/CacheMonitor.tsx";
-// import File from "../views/file/File.tsx";
+import File from "../views/file/File.tsx";
 import { Navigate } from "react-router-dom";
-import { lazy } from "react";
 
 // const baseRouter = () => (
 //     <BrowserRouter>
@@ -32,8 +31,6 @@ import { lazy } from "react";
 // )
 //
 // export default baseRouter;
-
-const File = lazy(() => import("../views/file/File.tsx"));
 
 const routes = [
     {

@@ -1,37 +1,26 @@
-import Login from "../views/login/Login.tsx";
-import Dashboard from "../views/dashboard/Dashboard.tsx";
-import PermissionDenied from "../views/error/PermissionDenied.tsx";
-import NotFound from "../views/error/NotFound.tsx";
-import ServerError from "../views/error/ServerError.tsx";
-import UserManager from "../views/system/UserManager.tsx";
-import RoleManager from "../views/system/RoleManager.tsx";
-import DeptManager from "../views/system/DeptManager.tsx";
-import CacheMonitor from "../views/monitor/CacheMonitor.tsx";
-import File from "../views/file/File.tsx";
-import GridTable from "../views/grid/GridTable.tsx";
-import { Navigate } from "react-router-dom";
+import React from "react";
+import {Navigate} from "react-router-dom";
+import {lazy} from "react";
 
-// const baseRouter = () => (
-//     <BrowserRouter>
-//         <Routes>
-//             <Route path="/" element={<App/>}>
-//                 <Route path="/login" element={<Login/>}></Route>
-//                 <Route path="/dashboard" element={<Dashboard/>}></Route>
-//                 <Route path="/system/user" element={<UserManager/>}></Route>
-//                 <Route path="/system/role" element={<RoleManager/>}></Route>
-//                 <Route path="/system/dept" element={<DeptManager/>}></Route>
-//                 <Route path="/monitor/cache" element={<CacheMonitor/>}></Route>
-//                 <Route path="/file" element={<File/>}></Route>
-//                 <Route path="/403" element={<PermissionDenied/>}></Route>
-//                 <Route path="/404" element={<NotFound/>}></Route>
-//                 <Route path="/500" element={<ServerError/>}></Route>
-//                 <Route path="*" element={<NotFound/>}></Route>
-//             </Route>
-//         </Routes>
-//     </BrowserRouter>
-// )
-//
-// export default baseRouter;
+const Login = lazy(() => import("../views/login/Login.tsx"));
+const Dashboard = lazy(() => import("../views/dashboard/Dashboard.tsx"));
+const PermissionDenied = lazy(() => import("../views/error/PermissionDenied.tsx"));
+const NotFound = lazy(() => import("../views/error/NotFound.tsx"));
+const ServerError = lazy(() => import("../views/error/ServerError.tsx"));
+const UserManager = lazy(() => import("../views/system/UserManager.tsx"));
+const RoleManager = lazy(() => import("../views/system/RoleManager.tsx"));
+const DeptManager = lazy(() => import("../views/system/DeptManager.tsx"));
+const CacheMonitor = lazy(() => import("../views/monitor/CacheMonitor.tsx"));
+const File = lazy(() => import("../views/file/File.tsx"));
+const GridTable = lazy(() => import("../views/grid/GridTable.tsx"));
+
+const withLoadingComponent = (component: JSX.Element) => {
+    return (
+        <React.Suspense fallback={<div>Loading...</div>}>
+            {component}
+        </React.Suspense>
+    )
+}
 
 const routes = [
     {
@@ -39,40 +28,40 @@ const routes = [
         element: <Navigate to="/dashboard"/>
     }, {
         path: "/login",
-        element: <Login/>
+        element: withLoadingComponent(<Login/>)
     }, {
         path: "/dashboard",
-        element: <Dashboard/>
+        element: withLoadingComponent(<Dashboard/>)
     }, {
         path: "/system/user",
-        element: <UserManager/>
+        element: withLoadingComponent(<UserManager/>)
     }, {
         path: "/system/role",
-        element: <RoleManager/>
+        element: withLoadingComponent(<RoleManager/>)
     }, {
         path: "/system/dept",
-        element: <DeptManager/>
+        element: withLoadingComponent(<DeptManager/>)
     }, {
         path: "/monitor/cache",
-        element: <CacheMonitor/>
+        element: withLoadingComponent(<CacheMonitor/>)
     }, {
         path: "/file",
-        element: <File/>
+        element: withLoadingComponent(<File/>)
     }, {
         path: "/grid",
-        element: <GridTable/>
+        element: withLoadingComponent(<GridTable/>)
     }, {
         path: "/403",
-        element: <PermissionDenied/>
+        element: withLoadingComponent(<PermissionDenied/>)
     }, {
         path: "/404",
-        element: <NotFound/>
+        element: withLoadingComponent(<NotFound/>)
     }, {
         path: "/500",
-        element: <ServerError/>
+        element: withLoadingComponent(<ServerError/>)
     }, {
         path: "*",
-        element: <NotFound/>
+        element: withLoadingComponent(<NotFound/>)
     }
 ]
 

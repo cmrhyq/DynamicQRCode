@@ -10,7 +10,7 @@ import App from './App.tsx'
  */
 import 'reset-css'
 import '@/assets/styles/global.scss'
-import { BrowserRouter } from "react-router-dom"
+import {BrowserRouter} from "react-router-dom"
 
 createRoot(document.getElementById('root')!).render(
     <StrictMode>

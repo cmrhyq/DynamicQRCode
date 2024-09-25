@@ -8,6 +8,10 @@ import { AG_GRID_LOCALE_CN } from '@ag-grid-community/locale';
 
 ModuleRegistry.registerModules([ClientSideRowModelModule]);
 
+/**
+ * @doc https://www.ag-grid.com/react-data-grid/deep-dive/
+ * @constructor
+ */
 function GridTable(){
     interface IRow {
         make: string;

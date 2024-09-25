@@ -12,26 +12,7 @@ ModuleRegistry.registerModules([ClientSideRowModelModule]);
  * @doc https://www.ag-grid.com/react-data-grid/deep-dive/
  * @constructor
  */
-function GridTable(){
-    interface IRow {
-        make: string;
-        model: string;
-        price: number;
-        electric: boolean;
-    }
-
-    const [rowData] = useState<IRow[]>([
-        { make: 'Tesla', model: 'Model Y', price: 64950, electric: true },
-        { make: 'Ford', model: 'F-Series', price: 33850, electric: false },
-        { make: 'Toyota', model: 'Corolla', price: 29600, electric: false },
-    ]);
-
-    const [colDefs] = useState<ColDef<IRow>[]>([
-        { field: 'make' },
-        { field: 'model' },
-        { field: 'price' },
-        { field: 'electric' },
-    ]);
+function GridTable({rowData, colDefs}: {rowData: any, colDefs: any}) {
 
     const [pagination] = useState<boolean>(true);
 

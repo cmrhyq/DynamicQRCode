@@ -8,6 +8,7 @@ import RoleManager from "../views/system/RoleManager.tsx";
 import DeptManager from "../views/system/DeptManager.tsx";
 import CacheMonitor from "../views/monitor/CacheMonitor.tsx";
 import File from "../views/file/File.tsx";
+import GridTable from "../views/grid/GridTable.tsx";
 import { Navigate } from "react-router-dom";
 
 // const baseRouter = () => (
@@ -57,6 +58,9 @@ const routes = [
     }, {
         path: "/file",
         element: <File/>
+    }, {
+        path: "/grid",
+        element: <GridTable/>
     }, {
         path: "/403",
         element: <PermissionDenied/>

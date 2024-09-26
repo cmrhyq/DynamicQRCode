@@ -58,6 +58,13 @@ function Index() {
         fontSize: 'x-large'
     }
 
+    const contentStyle: CSSProperties = {
+        padding: 24,
+        minHeight: window.innerHeight - 250,
+        background: colorBgContainer,
+        borderRadius: borderRadiusLG,
+    }
+
     return (
         <Layout style={{minHeight: "100vh"}}>
             <Sider
@@ -114,12 +121,7 @@ function Index() {
                                 {title: 'Home'},
                                 {title: 'List'},
                             ]}/>
-                        <div style={{
-                            padding: 24,
-                            minHeight: 700,
-                            background: colorBgContainer,
-                            borderRadius: borderRadiusLG
-                        }}>
+                        <div style={contentStyle}>
                             {element}
                         </div>
                     </Content>

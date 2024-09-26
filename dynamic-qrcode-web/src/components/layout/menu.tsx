@@ -1,4 +1,4 @@
-import {FileOutlined, HomeOutlined, TableOutlined, TeamOutlined, UserOutlined} from "@ant-design/icons";
+import {FileOutlined, HomeOutlined, QrcodeOutlined, TableOutlined, TeamOutlined, UserOutlined} from "@ant-design/icons";
 import {JSX} from "react/jsx-runtime";
 
 interface childrenType {
@@ -27,7 +27,9 @@ export const menuItems = [
     getItem('系统监控', '/monitor', <TeamOutlined/>, [
         getItem('缓存监控', '/monitor/cache', null, null),
     ]),
-    getItem('文件管理', '/file', <FileOutlined/>, null),
-    getItem('表格编辑', '/grid', <TableOutlined/>, null),
+    getItem('文件管理', '/file', <FileOutlined/>, [
+        getItem('表格编辑', '/file/grid', <TableOutlined/>, null),
+        getItem('二维码管理', '/file/qrcode', <QrcodeOutlined/>, null),
+    ]),
 ];
 export default menuItems;

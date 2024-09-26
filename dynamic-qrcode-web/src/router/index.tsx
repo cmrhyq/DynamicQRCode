@@ -11,7 +11,7 @@ const UserManager = lazy(() => import("../views/system/UserManager.tsx"));
 const RoleManager = lazy(() => import("../views/system/RoleManager.tsx"));
 const DeptManager = lazy(() => import("../views/system/DeptManager.tsx"));
 const CacheMonitor = lazy(() => import("../views/monitor/CacheMonitor.tsx"));
-const File = lazy(() => import("../views/file/File.tsx"));
+const Qrcode = lazy(() => import("../views/qrcode/Qrcode.tsx"));
 const GridTable = lazy(() => import("../views/grid/GridTable.tsx"));
 
 const Loading = () => (
@@ -49,10 +49,10 @@ const routes = [
         path: "/monitor/cache",
         element: withLoadingComponent(<CacheMonitor/>)
     }, {
-        path: "/file",
-        element: withLoadingComponent(<File/>)
+        path: "/file/qrcode",
+        element: withLoadingComponent(<Qrcode/>)
     }, {
-        path: "/grid",
+        path: "/file/grid",
         element: withLoadingComponent(<GridTable/>)
     }, {
         path: "/403",

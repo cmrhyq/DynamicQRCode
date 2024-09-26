@@ -1,14 +1,20 @@
 import {To, useNavigate, useRoutes} from "react-router-dom";
 import {CSSProperties, useState} from "react";
-import {Breadcrumb, Button, Layout, Menu, theme} from "antd";
+import {Avatar, Breadcrumb, Button, Col, Dropdown, Layout, Menu, MenuProps, Row, theme} from "antd";
 import menuItems from "./menu.tsx";
-import {MenuFoldOutlined, MenuUnfoldOutlined} from "@ant-design/icons";
+import {MenuFoldOutlined, MenuUnfoldOutlined, SettingOutlined, UserOutlined} from "@ant-design/icons";
 import routes from "../../router/index.tsx";
+
+// import cache from "../../plugins/cache.tsx";
 
 function Index() {
     const navigate = useNavigate();
     const element = useRoutes(routes);
+
     const [collapsed, setCollapsed] = useState(false);
+    // const [nickname] = useState(cache.session.get("nickname"));
+    const [nickname] = useState("Alan");
+
     const {Header, Content, Footer, Sider} = Layout;
     const {
         token: {colorBgContainer, borderRadiusLG},
@@ -16,6 +22,32 @@ function Index() {
     const switchMenu = (e: { key: To; }) => {
         navigate(e.key, {replace: true});
     }
+
+    const items: MenuProps['items'] = [
+        {
+            key: '1',
+            label: (
+                <div onClick={() => {
+                    console.log("Profile");
+                }}>
+                    Profile
+                </div>
+            ),
+            icon: <UserOutlined/>,
+        },
+        {
+            key: '2',
+            label: (
+                <div onClick={() => {
+                    console.log("Settings");
+                }}>
+                    Settings
+                </div>
+            ),
+            icon: <SettingOutlined/>,
+        },
+    ]
+
     const logoStyle: CSSProperties = {
         width: '100%',
         height: '50px',
@@ -44,16 +76,37 @@ function Index() {
             </Sider>
             <Layout>
                 <Header style={{padding: 0, background: colorBgContainer}}>
-                    <Button
-                        type="text"
-                        icon={collapsed ? <MenuUnfoldOutlined/> : <MenuFoldOutlined/>}
-                        onClick={() => setCollapsed(!collapsed)}
-                        style={{
-                            fontSize: '16px',
-                            width: 64,
-                            height: 64,
-                        }}
-                    />
+                    <Row>
+                        <Col span={8}>
+                            <Button
+                                type="text"
+                                icon={collapsed ? <MenuUnfoldOutlined/> : <MenuFoldOutlined/>}
+                                onClick={() => setCollapsed(!collapsed)}
+                                style={{
+                                    fontSize: '16px',
+                                    width: 64,
+                                    height: 64,
+                                }}
+                            />
+                        </Col>
+                        <Col offset={8} push={7}>
+                            <Dropdown
+                                menu={{items}}
+                                autoFocus={true}
+                                autoAdjustOverflow={true}>
+                                <Avatar
+                                    size="large"
+                                    gap={4}
+                                    shape="square"
+                                    style={{
+                                        backgroundColor: '#f56a00',
+                                        verticalAlign: 'middle',
+                                    }}>
+                                    {nickname}
+                                </Avatar>
+                            </Dropdown>
+                        </Col>
+                    </Row>
                     <Content style={{margin: '0px 16px'}}>
                         <Breadcrumb
                             style={{margin: '16px 0'}}

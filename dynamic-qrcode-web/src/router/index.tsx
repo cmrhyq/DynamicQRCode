@@ -1,6 +1,6 @@
-import React from "react";
+import React, {lazy} from "react";
 import {Navigate} from "react-router-dom";
-import {lazy} from "react";
+import {Spin} from "antd";
 
 const Login = lazy(() => import("../views/login/Login.tsx"));
 const Dashboard = lazy(() => import("../views/dashboard/Dashboard.tsx"));
@@ -14,9 +14,13 @@ const CacheMonitor = lazy(() => import("../views/monitor/CacheMonitor.tsx"));
 const File = lazy(() => import("../views/file/File.tsx"));
 const GridTable = lazy(() => import("../views/grid/GridTable.tsx"));
 
+const Loading = () => (
+    <Spin delay={1000} tip="Page Loading" spinning={true} percent="auto" fullscreen />
+)
+
 const withLoadingComponent = (component: JSX.Element) => {
     return (
-        <React.Suspense fallback={<div>Loading...</div>}>
+        <React.Suspense fallback={<Loading></Loading>}>
             {component}
         </React.Suspense>
     )

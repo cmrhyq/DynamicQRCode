@@ -7,6 +7,7 @@ import basicSsl from "@vitejs/plugin-basic-ssl";
 export default defineConfig({
     base: './',
     publicDir: 'public',
+    envDir: './env',
 
     // 项目构建过程配置
     build: {
